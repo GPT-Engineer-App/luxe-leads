@@ -11,7 +11,7 @@ const Index = () => {
   const [rvUnit, setRvUnit] = useState("");
   const [leadSource, setLeadSource] = useState("");
   const [notes, setNotes] = useState("");
-  const [picker, setPicker] = useState("");
+  
 
   const handleAddLead = () => {
     if (newLead.trim() !== "") {
@@ -23,7 +23,7 @@ const Index = () => {
         rvUnit,
         leadSource,
         notes,
-        picker
+        
       };
       setLeads([...leads, newLeadData]);
       setNewLead("");
@@ -33,7 +33,7 @@ const Index = () => {
       setRvUnit("");
       setLeadSource("");
       setNotes("");
-      setPicker("");
+      
     }
   };
 
@@ -138,18 +138,7 @@ const Index = () => {
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
               width={{ base: "100%", md: "auto" }}
             />
-            <Input
-              placeholder="Enter picker value"
-              value={picker}
-              onChange={(e) => setPicker(e.target.value)}
-              bg="gray.800"
-              border="none"
-              _placeholder={{ color: "gray.500" }}
-              color="white"
-              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
-              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
-              width={{ base: "100%", md: "auto" }}
-            />
+            
             <Button leftIcon={<FaPlus />} colorScheme="orange" onClick={handleAddLead} width={{ base: "100%", md: "auto" }} _hover={{ bg: neonOrange, boxShadow: glowEffect }} _active={{ bg: neonOrange }}>
               Add Lead
             </Button>
@@ -165,7 +154,7 @@ const Index = () => {
               <Text>RV Unit: {lead.rvUnit}</Text>
               <Text>Lead Source: {lead.leadSource}</Text>
               <Text>Notes: {lead.notes}</Text>
-              <Text>Picker: {lead.picker}</Text>
+              
               <Button size="sm" colorScheme="red" onClick={() => handleDeleteLead(index)} _hover={{ bg: neonGreen, boxShadow: glowEffect }} _active={{ bg: neonGreen }}>
                 <FaTrash />
               </Button>
