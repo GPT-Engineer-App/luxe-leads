@@ -5,11 +5,35 @@ import { FaPlus, FaTrash } from "react-icons/fa";
 const Index = () => {
   const [leads, setLeads] = useState([]);
   const [newLead, setNewLead] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [salesman, setSalesman] = useState("");
+  const [rvUnit, setRvUnit] = useState("");
+  const [leadSource, setLeadSource] = useState("");
+  const [notes, setNotes] = useState("");
+  const [picker, setPicker] = useState("");
 
   const handleAddLead = () => {
     if (newLead.trim() !== "") {
-      setLeads([...leads, newLead]);
+      const newLeadData = {
+        name: newLead,
+        phone,
+        email,
+        salesman,
+        rvUnit,
+        leadSource,
+        notes,
+        picker
+      };
+      setLeads([...leads, newLeadData]);
       setNewLead("");
+      setPhone("");
+      setEmail("");
+      setSalesman("");
+      setRvUnit("");
+      setLeadSource("");
+      setNotes("");
+      setPicker("");
     }
   };
 
@@ -41,6 +65,83 @@ const Index = () => {
               _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
             />
+            <Input
+              placeholder="Enter phone number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              bg="gray.800"
+              border="none"
+              _placeholder={{ color: "gray.500" }}
+              color="white"
+              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+            />
+            <Input
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              bg="gray.800"
+              border="none"
+              _placeholder={{ color: "gray.500" }}
+              color="white"
+              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+            />
+            <Input
+              placeholder="Enter salesman"
+              value={salesman}
+              onChange={(e) => setSalesman(e.target.value)}
+              bg="gray.800"
+              border="none"
+              _placeholder={{ color: "gray.500" }}
+              color="white"
+              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+            />
+            <Input
+              placeholder="Enter RV unit"
+              value={rvUnit}
+              onChange={(e) => setRvUnit(e.target.value)}
+              bg="gray.800"
+              border="none"
+              _placeholder={{ color: "gray.500" }}
+              color="white"
+              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+            />
+            <Input
+              placeholder="Enter lead source"
+              value={leadSource}
+              onChange={(e) => setLeadSource(e.target.value)}
+              bg="gray.800"
+              border="none"
+              _placeholder={{ color: "gray.500" }}
+              color="white"
+              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+            />
+            <Input
+              placeholder="Enter notes"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              bg="gray.800"
+              border="none"
+              _placeholder={{ color: "gray.500" }}
+              color="white"
+              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+            />
+            <Input
+              placeholder="Enter picker value"
+              value={picker}
+              onChange={(e) => setPicker(e.target.value)}
+              bg="gray.800"
+              border="none"
+              _placeholder={{ color: "gray.500" }}
+              color="white"
+              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+            />
             <Button leftIcon={<FaPlus />} colorScheme="orange" onClick={handleAddLead} width="100%" _hover={{ bg: neonOrange, boxShadow: glowEffect }} _active={{ bg: neonOrange }}>
               Add Lead
             </Button>
@@ -48,8 +149,15 @@ const Index = () => {
         </Box>
         <VStack spacing={2} width="100%">
           {leads.map((lead, index) => (
-            <Box key={index} width="100%" p={4} bg="gray.900" borderRadius="lg" boxShadow={boxShadow} style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)" }} display="flex" justifyContent="space-between" alignItems="center">
-              <Text>{lead}</Text>
+            <Box key={index} width="100%" p={4} bg="gray.900" borderRadius="lg" boxShadow={boxShadow} style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)" }} display="flex" flexDirection="column" justifyContent="space-between" alignItems="flex-start">
+              <Text>Name: {lead.name}</Text>
+              <Text>Phone: {lead.phone}</Text>
+              <Text>Email: {lead.email}</Text>
+              <Text>Salesman: {lead.salesman}</Text>
+              <Text>RV Unit: {lead.rvUnit}</Text>
+              <Text>Lead Source: {lead.leadSource}</Text>
+              <Text>Notes: {lead.notes}</Text>
+              <Text>Picker: {lead.picker}</Text>
               <Button size="sm" colorScheme="red" onClick={() => handleDeleteLead(index)} _hover={{ bg: neonGreen, boxShadow: glowEffect }} _active={{ bg: neonGreen }}>
                 <FaTrash />
               </Button>
