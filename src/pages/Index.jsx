@@ -1,4 +1,4 @@
-import { Container, VStack, Box, Text, Input, Button, useColorModeValue } from "@chakra-ui/react";
+import { Container, VStack, Box, Text, Input, Button, useColorModeValue, useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
@@ -49,10 +49,10 @@ const Index = () => {
   const glowEffect = `0 0 10px ${neonOrange}, 0 0 20px ${neonOrange}, 0 0 30px ${neonOrange}, 0 0 40px ${neonOrange}`;
 
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bg={bgColor} color="white">
+    <Container centerContent maxW={{ base: "100%", md: "container.md" }} height={{ base: "100%", md: "100vh" }} display="flex" flexDirection="column" justifyContent="center" alignItems="center" bg={bgColor} color="white">
       <VStack spacing={4} width="100%">
-        <Text fontSize="3xl" fontWeight="bold" color={neonOrange} textShadow={glowEffect}>Sales Lead Management</Text>
-        <Box width="100%" p={4} bg="gray.900" borderRadius="lg" boxShadow={boxShadow} style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
+        <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={neonOrange} textShadow={glowEffect}>Sales Lead Management</Text>
+        <Box width="100%" p={{ base: 2, md: 4 }} bg="gray.900" borderRadius="lg" boxShadow={boxShadow} style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
           <VStack spacing={4}>
             <Input
               placeholder="Enter new lead"
@@ -64,6 +64,7 @@ const Index = () => {
               color="white"
               _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+              width={{ base: "100%", md: "auto" }}
             />
             <Input
               placeholder="Enter phone number"
@@ -75,6 +76,7 @@ const Index = () => {
               color="white"
               _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+              width={{ base: "100%", md: "auto" }}
             />
             <Input
               placeholder="Enter email"
@@ -86,6 +88,7 @@ const Index = () => {
               color="white"
               _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+              width={{ base: "100%", md: "auto" }}
             />
             <Input
               placeholder="Enter salesman"
@@ -97,6 +100,7 @@ const Index = () => {
               color="white"
               _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+              width={{ base: "100%", md: "auto" }}
             />
             <Input
               placeholder="Enter RV unit"
@@ -108,6 +112,7 @@ const Index = () => {
               color="white"
               _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+              width={{ base: "100%", md: "auto" }}
             />
             <Input
               placeholder="Enter lead source"
@@ -119,6 +124,7 @@ const Index = () => {
               color="white"
               _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+              width={{ base: "100%", md: "auto" }}
             />
             <Input
               placeholder="Enter notes"
@@ -130,6 +136,7 @@ const Index = () => {
               color="white"
               _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+              width={{ base: "100%", md: "auto" }}
             />
             <Input
               placeholder="Enter picker value"
@@ -141,15 +148,16 @@ const Index = () => {
               color="white"
               _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
               style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+              width={{ base: "100%", md: "auto" }}
             />
-            <Button leftIcon={<FaPlus />} colorScheme="orange" onClick={handleAddLead} width="100%" _hover={{ bg: neonOrange, boxShadow: glowEffect }} _active={{ bg: neonOrange }}>
+            <Button leftIcon={<FaPlus />} colorScheme="orange" onClick={handleAddLead} width={{ base: "100%", md: "auto" }} _hover={{ bg: neonOrange, boxShadow: glowEffect }} _active={{ bg: neonOrange }}>
               Add Lead
             </Button>
           </VStack>
         </Box>
         <VStack spacing={2} width="100%">
           {leads.map((lead, index) => (
-            <Box key={index} width="100%" p={4} bg="gray.900" borderRadius="lg" boxShadow={boxShadow} style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)" }} display="flex" flexDirection="column" justifyContent="space-between" alignItems="flex-start">
+            <Box key={index} width="100%" p={{ base: 2, md: 4 }} bg="gray.900" borderRadius="lg" boxShadow={boxShadow} style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)" }} display="flex" flexDirection="column" justifyContent="space-between" alignItems="flex-start">
               <Text>Name: {lead.name}</Text>
               <Text>Phone: {lead.phone}</Text>
               <Text>Email: {lead.email}</Text>
