@@ -1,4 +1,4 @@
-import { Container, VStack, Box, Text, Input, Button, useColorModeValue, useBreakpointValue } from "@chakra-ui/react";
+import { Container, VStack, Box, Text, Input, Button, useColorModeValue, useBreakpointValue, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
@@ -12,6 +12,7 @@ const Index = () => {
   const [leadSource, setLeadSource] = useState("");
   const [notes, setNotes] = useState("");
   
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleAddLead = () => {
     if (newLead.trim() !== "") {
@@ -23,7 +24,6 @@ const Index = () => {
         rvUnit,
         leadSource,
         notes,
-        
       };
       setLeads([...leads, newLeadData]);
       setNewLead("");
@@ -33,7 +33,7 @@ const Index = () => {
       setRvUnit("");
       setLeadSource("");
       setNotes("");
-      
+      onClose();
     }
   };
 
@@ -54,94 +54,110 @@ const Index = () => {
         <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={neonOrange} textShadow={glowEffect}>Sales Lead Management</Text>
         <Box width="100%" p={{ base: 2, md: 4 }} bg="gray.900" borderRadius="lg" boxShadow={boxShadow} style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
           <VStack spacing={4}>
-            <Input
-              placeholder="Enter new lead"
-              value={newLead}
-              onChange={(e) => setNewLead(e.target.value)}
-              bg="gray.800"
-              border="none"
-              _placeholder={{ color: "gray.500" }}
-              color="white"
-              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
-              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
-              width={{ base: "100%", md: "auto" }}
-            />
-            <Input
-              placeholder="Enter phone number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              bg="gray.800"
-              border="none"
-              _placeholder={{ color: "gray.500" }}
-              color="white"
-              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
-              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
-              width={{ base: "100%", md: "auto" }}
-            />
-            <Input
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              bg="gray.800"
-              border="none"
-              _placeholder={{ color: "gray.500" }}
-              color="white"
-              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
-              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
-              width={{ base: "100%", md: "auto" }}
-            />
-            <Input
-              placeholder="Enter salesman"
-              value={salesman}
-              onChange={(e) => setSalesman(e.target.value)}
-              bg="gray.800"
-              border="none"
-              _placeholder={{ color: "gray.500" }}
-              color="white"
-              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
-              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
-              width={{ base: "100%", md: "auto" }}
-            />
-            <Input
-              placeholder="Enter RV unit"
-              value={rvUnit}
-              onChange={(e) => setRvUnit(e.target.value)}
-              bg="gray.800"
-              border="none"
-              _placeholder={{ color: "gray.500" }}
-              color="white"
-              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
-              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
-              width={{ base: "100%", md: "auto" }}
-            />
-            <Input
-              placeholder="Enter lead source"
-              value={leadSource}
-              onChange={(e) => setLeadSource(e.target.value)}
-              bg="gray.800"
-              border="none"
-              _placeholder={{ color: "gray.500" }}
-              color="white"
-              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
-              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
-              width={{ base: "100%", md: "auto" }}
-            />
-            <Input
-              placeholder="Enter notes"
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              bg="gray.800"
-              border="none"
-              _placeholder={{ color: "gray.500" }}
-              color="white"
-              _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
-              style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
-              width={{ base: "100%", md: "auto" }}
-            />
-            
-            <Button leftIcon={<FaPlus />} colorScheme="orange" onClick={handleAddLead} width={{ base: "100%", md: "auto" }} _hover={{ bg: neonOrange, boxShadow: glowEffect }} _active={{ bg: neonOrange }}>
+            <Button leftIcon={<FaPlus />} colorScheme="orange" onClick={onOpen} width={{ base: "100%", md: "auto" }} _hover={{ bg: neonOrange, boxShadow: glowEffect }} _active={{ bg: neonOrange }}>
               Add Lead
             </Button>
+            <Modal isOpen={isOpen} onClose={onClose} size="xl">
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>Add New Lead</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody overflowY="auto" maxHeight="400px">
+                  <Input
+                    placeholder="Enter new lead"
+                    value={newLead}
+                    onChange={(e) => setNewLead(e.target.value)}
+                    bg="gray.800"
+                    border="none"
+                    _placeholder={{ color: "gray.500" }}
+                    color="white"
+                    _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+                    style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+                    width={{ base: "100%", md: "auto" }}
+                  />
+                  <Input
+                    placeholder="Enter phone number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    bg="gray.800"
+                    border="none"
+                    _placeholder={{ color: "gray.500" }}
+                    color="white"
+                    _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+                    style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+                    width={{ base: "100%", md: "auto" }}
+                  />
+                  <Input
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    bg="gray.800"
+                    border="none"
+                    _placeholder={{ color: "gray.500" }}
+                    color="white"
+                    _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+                    style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+                    width={{ base: "100%", md: "auto" }}
+                  />
+                  <Input
+                    placeholder="Enter salesman"
+                    value={salesman}
+                    onChange={(e) => setSalesman(e.target.value)}
+                    bg="gray.800"
+                    border="none"
+                    _placeholder={{ color: "gray.500" }}
+                    color="white"
+                    _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+                    style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+                    width={{ base: "100%", md: "auto" }}
+                  />
+                  <Input
+                    placeholder="Enter RV unit"
+                    value={rvUnit}
+                    onChange={(e) => setRvUnit(e.target.value)}
+                    bg="gray.800"
+                    border="none"
+                    _placeholder={{ color: "gray.500" }}
+                    color="white"
+                    _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+                    style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+                    width={{ base: "100%", md: "auto" }}
+                  />
+                  <Input
+                    placeholder="Enter lead source"
+                    value={leadSource}
+                    onChange={(e) => setLeadSource(e.target.value)}
+                    bg="gray.800"
+                    border="none"
+                    _placeholder={{ color: "gray.500" }}
+                    color="white"
+                    _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+                    style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+                    width={{ base: "100%", md: "auto" }}
+                  />
+                  <Input
+                    placeholder="Enter notes"
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    bg="gray.800"
+                    border="none"
+                    _placeholder={{ color: "gray.500" }}
+                    color="white"
+                    _focus={{ boxShadow: `0 0 0 2px ${neonOrange}` }}
+                    style={{ borderRadius: "10px", boxShadow: "inset 5px 5px 10px #1a1a1a, inset -5px -5px 10px #333" }}
+                    width={{ base: "100%", md: "auto" }}
+                  />
+                </ModalBody>
+                <ModalFooter>
+                  <Button colorScheme="blue" mr={3} onClick={onClose}>
+                    Close
+                  </Button>
+                  <Button leftIcon={<FaPlus />} colorScheme="orange" onClick={handleAddLead} width={{ base: "100%", md: "auto" }} _hover={{ bg: neonOrange, boxShadow: glowEffect }} _active={{ bg: neonOrange }}>
+                    Add Lead
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
           </VStack>
         </Box>
         <VStack spacing={2} width="100%">
