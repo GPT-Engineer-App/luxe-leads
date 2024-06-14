@@ -49,8 +49,8 @@ const Index = () => {
   const glowEffect = `0 0 10px ${neonOrange}, 0 0 20px ${neonOrange}, 0 0 30px ${neonOrange}, 0 0 40px ${neonOrange}`;
 
   return (
-    <Container centerContent maxW={{ base: "100%", md: "container.md" }} height={{ base: "100%", md: "100vh" }} display="flex" flexDirection="column" justifyContent="center" alignItems="center" bg={bgColor} color="white">
-      <VStack spacing={4} width="100%">
+    <Container centerContent maxW={{ base: "100%", md: "container.md" }} height={{ base: "auto", md: "100vh" }} display="flex" flexDirection="column" justifyContent="center" alignItems="center" bg={bgColor} color="white">
+      <VStack spacing={{ base: 2, md: 4 }} width="100%">
         <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color={neonOrange} textShadow={glowEffect}>Sales Lead Management</Text>
         <Box width="100%" p={{ base: 2, md: 4 }} bg="gray.900" borderRadius="lg" boxShadow={boxShadow} style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
           <VStack spacing={4}>

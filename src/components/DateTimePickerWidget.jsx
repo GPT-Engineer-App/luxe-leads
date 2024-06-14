@@ -15,8 +15,8 @@ const DateTimePickerWidget = () => {
   };
 
   return (
-    <Box p={4} bg="gray.900" borderRadius="lg" boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)">
-      <VStack spacing={4}>
+    <Box p={{ base: 2, md: 4 }} width={{ base: "100%", md: "auto" }} bg="gray.900" borderRadius="lg" boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)">
+      <VStack spacing={{ base: 2, md: 4 }}>
         <Text fontSize="xl" color="white">Set a Reminder</Text>
         <Input
           type="date"
