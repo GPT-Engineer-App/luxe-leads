@@ -24,7 +24,7 @@ const Index = () => {
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bg={bgColor} color="white">
       <VStack spacing={4} width="100%">
-        <Text fontSize="3xl" fontWeight="bold" color="neon.orange">Sales Lead Management</Text>
+        <Text fontSize="3xl" fontWeight="bold" color="orange.400">Sales Lead Management</Text>
         <Box width="100%" p={4} bg="gray.900" borderRadius="lg" boxShadow={boxShadow} style={{ backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)" }}>
           <VStack spacing={4}>
             <Input
@@ -35,7 +35,7 @@ const Index = () => {
               border="none"
               _placeholder={{ color: "gray.500" }}
               color="white"
-              _focus={{ boxShadow: "0 0 0 2px neon.orange" }}
+              _focus={{ boxShadow: "0 0 0 2px orange.400" }}
             />
             <Button leftIcon={<FaPlus />} colorScheme="orange" onClick={handleAddLead} width="100%">
               Add Lead
